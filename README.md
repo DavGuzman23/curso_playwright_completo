@@ -37,3 +37,11 @@ test('First playwright test', async ( {browser} ) =>
     
 
 })
+
+Si las pruebas estan en diferentes archivos al lanzar el comando npx playwright test se lanzara paralelamente.
+En caso de estar en el mismo archivo se lanzara secuencialmente.
+
+Por defecto playwright ejecuta los test de manera que no aparecen en pantalla. Para modificar eso tienes que añadir en el archivo de confi:
+en consola lanzarlo con el comando npx playwright test --headed
+
+Para que solo se ejecute un test poner en el principio del test "test.only"

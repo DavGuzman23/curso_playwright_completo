@@ -16,6 +16,6 @@ test('Browser context playwright test', async ( {browser} ) =>
 //!En caso de no tener nada que incluir dentro de estos argumentos solo bastaria con añadir como argumento a la funcion el parametro page como se ve aqui.
 test('Page playwright test', async ({page}) => {
 
-    await page.goto('https://rahulshettyacademy.com/loginpagePractise/')
+    await page.goto('https://google.com')
 
 })
