@@ -1,4 +1,4 @@
-const {test} = require ('@playwright/test')
+const {test, expect} = require ('@playwright/test')
 
 //!Lo que estamos pasando dentro de los {} es igual que llamar a una variable global
 test('Browser context playwright test', async ( {browser} ) =>
@@ -10,12 +10,15 @@ test('Browser context playwright test', async ( {browser} ) =>
     const context = await browser.newContext()
     const page = await context.newPage()
     await page.goto('https://rahulshettyacademy.com/loginpagePractise/')
+    expect(page).toHaveTitle()
 
 })
 
-//!En caso de no tener nada que incluir dentro de estos argumentos solo bastaria con añadir como argumento a la funcion el parametro page como se ve aqui.
+//!En caso de no tener nada que incluir dentro de estos argumentos solo bastaria con añadir como argumento "page" a la funcion el parametro page como se ve aqui.
 test('Page playwright test', async ({page}) => {
 
     await page.goto('https://google.com')
+    //!Para obtener el titulo de la pagina en un assertion
+    await expect(page).toHaveTitle('Google')
 
 })

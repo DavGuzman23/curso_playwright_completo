@@ -14,7 +14,8 @@ const config = {
   use: {
 
     //!Browsers : Chrome:chromium; firefox:firefox; safari:webkit
-    browserName : 'chromium'
+    browserName : 'webkit',
+    headless: false
 
   }
 
