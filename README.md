@@ -45,3 +45,6 @@ Por defecto playwright ejecuta los test de manera que no aparecen en pantalla. P
 en consola lanzarlo con el comando npx playwright test --headed
 
 Para que solo se ejecute un test poner en el principio del test "test.only"
+
+Reglas para selectores CSS
+![alt text](image.png)

@@ -6,7 +6,7 @@ const config = {
   testDir: './tests',
   //!Tiempo en el que ejecutar antes de lanzar el fallo de la prueba
   timeout: 30 * 1000,
-  //!Tiempo esperado
+  //!Tiempo esperado para que se cumplan las assertions, en caso contrario fallara
   expect: { timeout: 5000 },
   //!Como quieres obtener el reporte
   reporter: 'html',
@@ -14,7 +14,7 @@ const config = {
   use: {
 
     //!Browsers : Chrome:chromium; firefox:firefox; safari:webkit
-    browserName : 'webkit',
+    browserName : 'chromium',
     headless: false
 
   }
