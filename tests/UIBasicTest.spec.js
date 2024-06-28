@@ -1,7 +1,7 @@
 const {test, expect} = require ('@playwright/test')
 
 //!Lo que estamos pasando dentro de los {} es igual que llamar a una variable global
-test.only('Browser context playwright test', async ( {browser} ) =>
+test('Browser context playwright test', async ( {browser} ) =>
 
 {
     //!Crear nuevo contexto del test : navegador, plugins que necesitas, etc...
