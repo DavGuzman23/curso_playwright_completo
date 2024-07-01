@@ -48,3 +48,51 @@ test('Page playwright test', async ({page}) => {
     await expect(page).toHaveTitle('Google')
 
 })
+
+test.only('UI control', async ({page}) => {
+
+    await page.goto('https://rahulshettyacademy.com/loginpagePractise/')
+
+    const userName = page.locator('#username')
+    const password = page.locator('[type="password"]')
+    const signIn= page.locator('#signInBtn')
+    const dropdown = page.locator('select.form-control')
+    const radioButton = page.locator('.radiotextsty')
+    const popUpConfirmation = page.locator('#okayBtn')
+    const termsAndCondRadBtn = page.locator('#terms')
+    const documentLink = page.locator('[href*="documents-request"]')
+
+
+    await userName.fill("rahulshetty")
+    await password.fill("learning")
+    //! Para manejar y clickar en una de las opciones del dropdown con tag select:
+    await dropdown.selectOption('consult')
+    //! Select radio buttons
+    await radioButton.last().click()
+    //! Para manejar el popup
+    await popUpConfirmation.click()
+    await termsAndCondRadBtn.click()
+
+    //! Otro metodo que devuelve true si esta checked y false si no lo esta
+    console.log(await radioButton.last().isChecked())
+
+    //!Assertion
+    await expect(radioButton.last()).toBeChecked()
+    await expect(termsAndCondRadBtn).toBeChecked()
+
+    //! Para quitar el check usar:
+    await termsAndCondRadBtn.uncheck()
+    //! No hay una assert para comprobar que no esta checked pero podemos usar
+    //! Aqui el await se introduce dentro de parentesis porque la accion se realiza dentro
+    expect(await termsAndCondRadBtn.isChecked()).toBeFalsy()
+    //! En caso de querer comprobar si algo es verdadero poner toBeTruthy()
+    //Ej expect(await termsAndCondRadBtn.isChecked()).toBeTruthy()
+
+    //!Comprobacion de un atributo de cualquier elemento de la pagina, en este caso miraremos si parpadea
+    await expect(documentLink).toHaveAttribute('class', 'blinkingText')
+
+    // await signIn.click()
+    //!Esto sirve para parar la ejecucion antes de cerrar el navegador y ver el resultado
+    await page.pause()
+ 
+})

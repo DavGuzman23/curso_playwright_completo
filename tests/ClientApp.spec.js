@@ -1,6 +1,6 @@
 const {test, expect} = require ('@playwright/test')
 
-test.only('Browser context validation Error loging', async({page}) => {
+test('Browser context validation Error loging', async({page}) => {
     
     await page.goto('https://rahulshettyacademy.com/client')
 
