@@ -1,4 +1,5 @@
 const {test, expect} = require ('@playwright/test')
+const { promise } = require('selenium-webdriver')
 
 //!Lo que estamos pasando dentro de los {} es igual que llamar a una variable global
 test('Browser context playwright test', async ( {browser} ) =>
@@ -49,7 +50,7 @@ test('Page playwright test', async ({page}) => {
 
 })
 
-test.only('UI control', async ({page}) => {
+test('UI control', async ({page}) => {
 
     await page.goto('https://rahulshettyacademy.com/loginpagePractise/')
 
@@ -96,3 +97,38 @@ test.only('UI control', async ({page}) => {
     await page.pause()
  
 })
+
+test.only('Child windows handling', async({browser}) => {
+
+    //! En este test vamos a ver como manejar cuando un link se abre en otra ventana o pestaña diferente
+
+    const context = await browser.newContext()
+    const page = await context.newPage()
+    await page.goto('https://rahulshettyacademy.com/loginpagePractise/')
+
+    const userName = page.locator('#username')
+    const documentLink = page.locator('[href*="documents-request"]')
+
+    //! Los metemos en una promesa para ejecutarlos paralelamente
+    //!Haciendo esta promesa nos aseguramos que estos pasos se hagan de manera exitosa y ademas que hasta que no esten ejecutados no siga con los demas
+    //! Si queremos abrir mas de una pagina simplemente deberiamos crear mas paginas dentro del array
+    const [newPage] = await Promise.all([
+        //! Cambiamos al nuevo contecto de la nueva pabagina redirigida. Estos dos metodos retornan promesasy tenemos que hacer que se ejecuten de manera pararela
+        context.waitForEvent('page'), //Recibe la llamada para abrir la nueva pagina
+        documentLink.click()  //La nueva pagina es abierta
+    ])
+
+    const text = await newPage.locator('.red').textContent()
+
+    //!Como dividir la cadena de texto por donde queramos
+    const arrayText = text.split('@')
+    const domain = arrayText[1].split(' ')[0]
+
+    console.log(domain)
+
+    //! Vamos a introducir un dato de la nueva pagina redirigida en la anterior pagina
+    //! Siempre tienes que llamar primero al locator de la pagina padre o pagina principal, no al reves
+    await userName.fill(domain)
+    await page.pause()
+    
+});
