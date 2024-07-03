@@ -94,11 +94,11 @@ test('UI control', async ({page}) => {
 
     // await signIn.click()
     //!Esto sirve para parar la ejecucion antes de cerrar el navegador y ver el resultado
-    await page.pause()
+    // await page.pause()
  
 })
 
-test.only('Child windows handling', async({browser}) => {
+test('Child windows handling', async({browser}) => {
 
     //! En este test vamos a ver como manejar cuando un link se abre en otra ventana o pestaña diferente
 
@@ -129,6 +129,6 @@ test.only('Child windows handling', async({browser}) => {
     //! Vamos a introducir un dato de la nueva pagina redirigida en la anterior pagina
     //! Siempre tienes que llamar primero al locator de la pagina padre o pagina principal, no al reves
     await userName.fill(domain)
-    await page.pause()
+    // await page.pause()
     
 });

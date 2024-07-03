@@ -22,6 +22,16 @@ We suggest that you begin by typing:
 
     npx playwright test
 
+Para iniciar un test en debug mode para ver donde falla lanzar el siguiente comando:
+- "npx playwright test --debug"
+Al lanzar este comando aparecera una ventana en la ejecucion en la que podras ir pasando paso por paso
+![alt text](image-1.png)
+Si en esta ventana hacer click en explore puedes seleccionar selectores para introducir en tu codigo. Ademas puedes validar los existentes.
+
+Si quieres grabar las acciones que hagas en el navegador y que playwright te cree el test automaticamente tienes que hacer:
+- "npx playwright codegen +c url a testear"
+Despues de esto veras la pantalla donde se ira creando el codigo con todos los pasos que vayas haciendo.
+
 And check out the following files:
   - ./tests/example.spec.js - Example end-to-end test
   - ./tests-examples/demo-todo-app.spec.js - Demo Todo App end-to-end tests
