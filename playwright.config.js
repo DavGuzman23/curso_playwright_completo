@@ -21,7 +21,7 @@ const config = {
     //!Para sacar screenshot
     screenshot: 'on',
     //!Para registrar que paso en cada step. Si lo pones en "on" generara todos. Como esta ahora solo en caso de fallos
-    trace: 'retain-on-failure'
+    trace: 'on'
 
   }
 
