@@ -39,12 +39,14 @@ test.only('E2E test for e-commerce', async({page}) => {
     const password = page.locator('#userPassword')
     const loginBtn = page.locator('[value="Login"]')
     const cartBtn = page.locator('[routerlink*="cart"]')
+    const nameInCart = page.locator('h3:has-text("ADIDAS ORIGINAL")')
+    const cartSection = page.locator('div li')
 
     await userName.fill(userMail)
     await password.fill(userPassword)
     await loginBtn.click()
 
-    // Esperar a que los productos estén visibles
+    //! Esperar a que los productos estén visibles
     await products.first().waitFor();
 
     const count = await products.count()
@@ -56,7 +58,6 @@ test.only('E2E test for e-commerce', async({page}) => {
         //! Extraemos el texto y lo imrpimimos por pantalla
         const productTitle = await products.nth(i).locator('b').textContent()
         console.log(`Comprobando productos ${productTitle}`)
-
         if (productTitle === productName){
 
             //!Logica para añadir el producto al carrito y que pulse el addtocart del producto que queremos y no de todos
@@ -66,11 +67,17 @@ test.only('E2E test for e-commerce', async({page}) => {
             await addToCartBtn.click()
             //! para que no siga con el loop una vez haya encontrado el producto
             break
-
         }
     }
     await cartBtn.click()
+
     await page.waitForTimeout(2000)
+
+    const productTitleInCart = await nameInCart.first().textContent()
+    console.log(`Comprobando productos en cesta: ${productTitleInCart}`)
+    const bool = await nameInCart.isVisible()
+    expect(bool).toBeTruthy()
+
 
     // await page.pause()
 
