@@ -118,31 +118,54 @@ test.only('E2E test for e-commerce', async({page}) => {
     idProcesada = idProcesada.replace(/[|]/g, '').trim();
     console.log(`ID procesada: ${idProcesada}`);
     await ordersBtn.click()
+    await page.locator('tbody').waitFor()
 
-    await table.waitFor()
 
-    const rowsSelector = '.table-responsive tr'; 
-    await page.waitForSelector(rowsSelector, { state: 'visible' });
+    // await table.waitFor()
 
-    const rows = table.locator(rowsSelector);
-    const rowCount = await rows.count();
-    console.log(`Número de filas en la tabla: ${rowCount}`);
+    // const rowsSelector = 'tr'; 
+    // await page.waitForSelector(rowsSelector, { state: 'visible' });
+
+    // const rows = table.locator(rowsSelector);
+    // const rowCount = await rows.count();
+    // console.log(`Número de filas en la tabla: ${rowCount}`);
     
-    for(let a = 0; a < rowCount; a++) {
+    // for(let a = 0; a < rowCount; a++) {
 
-        const idElementsTableProcessed = await rows.nth(a).locator('.ng-star-inserted > th').textContent();
-        console.log(`ID en la tabla: ${idElementsTableProcessed}`);
+    //     const idElementsTableProcessed = await rows.nth(a).locator(idElementsTable).textContent();
+    //     console.log(`ID en la tabla: ${idElementsTableProcessed}`);
 
-        if(idElementsTableProcessed.trim() === idProcesada) {
+    //     if(idElementsTableProcessed.trim() === idProcesada) {
 
-            console.log(`Las id's encontradas son ${idElementsTableProcessed} ya ${idProcesada}`)
-            const viewBtn = rows.nth(a).locator('button:text("View")')
-            await viewBtn.click()
+    //         console.log(`Las id's encontradas son ${idElementsTableProcessed} ya ${idProcesada}`)
+    //         const viewBtn = rows.nth(a).locator('button:text("View")')
+    //         await viewBtn.click()
+    //         console.log(`Clicked view button for ID: ${idProcesada}`);
+    //         break
+    //     }
+
+    // }
+    //! Iteramos sobre las filas de la tabla
+    const rows = page.locator('tbody tr')
+    
+
+    for(let i = 0; i<await rows.count(); ++i){
+
+        const rowOrderId = await rows.nth(i).locator('th').textContent()
+        console.log(`ID en la tabla: ${rowOrderId}`);
+
+        //! Si la id que encontramos en la tabla es la misma que recogimos anteriormente le damos click a view
+        if(idProcesada.trim() === rowOrderId) {
+
+            console.log(`Las id's encontradas son ${rowOrderId} ya ${idProcesada}`)
+            await rows.nth(i).locator('button').first().click()
             console.log(`Clicked view button for ID: ${idProcesada}`);
             break
         }
-
     }
+
+    const orderIdDetails = await page.locator('.col-text').textContent()
+    expect(idProcesada.includes(orderIdDetails)).toBeTruthy()
 
     await page.pause()
 
