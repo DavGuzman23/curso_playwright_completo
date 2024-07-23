@@ -18,6 +18,11 @@ npx playwright test
   npx playwright codegen
     Auto generate tests with Codegen.
 
+  Para ejecutar los test como ui interface;
+  Lanzando este comando se abrira una terminal en la que podras ejecutar cualquier test y ver el codigo, network etc
+  ![alt text](image-2.png)
+    npx playwright test --ui
+
 We suggest that you begin by typing:
 
     npx playwright test

@@ -26,7 +26,7 @@ test('Browser context validation Error loging', async({page}) => {
 
 });
 
-test.only('E2E test for e-commerce', async({page}) => {
+test('E2E test for e-commerce', async({page}) => {
 
     await page.goto('https://rahulshettyacademy.com/client')
 
@@ -40,15 +40,15 @@ test.only('E2E test for e-commerce', async({page}) => {
     const loginBtn = page.locator('[value="Login"]')
     const cartBtn = page.locator('[routerlink*="cart"]')
     const nameInCart = page.locator('h3:has-text("ADIDAS ORIGINAL")')
-    const cartSection = page.locator('div li')
+    // const cartSection = page.locator('div li')
     const checkoutBtn = page.locator('text=Checkout')
     const userMailInCheckOut = page.locator('.user__name > label')
     const placeOrderBtn = page.locator('.action__submit')
     const messageThankForBuy = page.locator('.hero-primary')
     const idPedido = page.locator('.em-spacer-1 > .ng-star-inserted')
     const ordersBtn = page.locator('[routerlink*="myorders"]').first()
-    const table = page.locator('.table-responsive')
-    const idElementsTable = page.locator('.ng-star-inserted > th')
+    // const table = page.locator('.table-responsive')
+    // const idElementsTable = page.locator('.ng-star-inserted > th')
 
     await userName.fill(userMail)
     await password.fill(userPassword)
@@ -80,7 +80,7 @@ test.only('E2E test for e-commerce', async({page}) => {
     await cartBtn.click()
 
     await page.waitForTimeout(2000)
-
+ 
     const productTitleInCart = await nameInCart.first().textContent()
     console.log(`Comprobando productos en cesta: ${productTitleInCart}`)
     const bool = await nameInCart.isVisible()
