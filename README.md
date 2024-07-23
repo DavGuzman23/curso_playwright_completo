@@ -1,3 +1,6 @@
+Reglas para selectores CSS
+![alt text](image.png)
+
 Comando para inicializar proyecto de Playwright: npm init playwright.
 
 npx playwright test
@@ -61,5 +64,3 @@ en consola lanzarlo con el comando npx playwright test --headed
 
 Para que solo se ejecute un test poner en el principio del test "test.only"
 
-Reglas para selectores CSS
-![alt text](image.png)
