@@ -1,5 +1,5 @@
 Reglas para selectores CSS
-![alt text](image.png)
+![alt text](images/image.png)
 
 Comando para inicializar proyecto de Playwright: npm init playwright.
 
@@ -23,7 +23,7 @@ npx playwright test
 
   Para ejecutar los test como ui interface;
   Lanzando este comando se abrira una terminal en la que podras ejecutar cualquier test y ver el codigo, network etc
-  ![alt text](image-2.png)
+  ![alt text](images/image-2.png)
     npx playwright test --ui
 
 We suggest that you begin by typing:
@@ -33,7 +33,7 @@ We suggest that you begin by typing:
 Para iniciar un test en debug mode para ver donde falla lanzar el siguiente comando:
 - "npx playwright test --debug"
 Al lanzar este comando aparecera una ventana en la ejecucion en la que podras ir pasando paso por paso
-![alt text](image-1.png)
+![alt text](images/image-1.png)
 Si en esta ventana hacer click en explore puedes seleccionar selectores para introducir en tu codigo. Ademas puedes validar los existentes.
 
 Si quieres grabar las acciones que hagas en el navegador y que playwright te cree el test automaticamente tienes que hacer:
