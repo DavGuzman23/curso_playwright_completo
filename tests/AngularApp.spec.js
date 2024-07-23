@@ -1,6 +1,6 @@
 const {test, expect} = require ('@playwright/test')
 
-test.only('Playwright special locator', async({ page }) => {
+test('Playwright special locator', async({ page }) => {
 
     await page.goto('https://rahulshettyacademy.com/angularpractice/')
 
