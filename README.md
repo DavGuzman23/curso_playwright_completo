@@ -27,20 +27,22 @@ Runs the end-to-end tests.
 ```
 Starts the interactive UI mode.
 Launching this command will open a terminal in which you can run any test and view the code, network etc.
-![alt text](images/image-2.png)
 ```bash
   npx playwright test --ui
 ```
+![alt text](images/image-2.png)
+
  Runs the tests in a specific file.
 ```bash
   npx playwright "test example"
 ```
 Runs the tests in debug mode.
 When you launch this command, a window will appear in the execution in which you can go step by step through the following steps
-![alt text](images/image-1.png)
 ```bash
   npx playwright test --debug
 ```
+![alt text](images/image-1.png)
+
 Auto generate tests with Codegen
 ```bash
   npx playwright codegen
