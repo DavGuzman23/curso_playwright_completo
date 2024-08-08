@@ -1,6 +1,6 @@
 const {test, expect} = require ('@playwright/test')
 
-test.only('Calendar validations', async ({page}) => {
+test('Calendar validations', async ({page}) => {
     
     const monthNumer = "6"
     const date = '15'
